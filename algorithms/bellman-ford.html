@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bellman-Ford Algorithm</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Bellman-Ford Algorithm</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="linear-search.html">Linear Search</a></li>
+                <li><a href="binary-search.html">Binary Search</a></li>
+                <li><a href="selection-sort.html">Selection Sort</a></li>
+                <li><a href="insertion-sort.html">Insertion Sort</a></li>
+                <li><a href="merge-sort.html">Merge Sort</a></li>
+                <li><a href="quicksort.html">Quicksort</a></li>
+                <li><a href="counting-sort.html">Counting Sort</a></li>
+                <li><a href="radix-sort.html">Radix Sort</a></li>
+                <li><a href="dijkstras.html">Dijkstra's Algorithm</a></li>
+                <li><a href="bellman-ford.html">Bellman-Ford Algorithm</a></li>
+                <li><a href="floyd-warshall.html">Floyd-Warshall Algorithm</a></li>
+                <li><a href="huffman.html">Huffman Codes</a></li>
+                <li><a href="lzw.html">LZW Compression</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Overview</h2>
+            <p>The Bellman-Ford algorithm is a single-source shortest path algorithm that can handle graphs with negative weight edges. It is used to find the shortest path from a starting vertex to all other vertices in a weighted graph.</p>
+        </section>
+        <section>
+            <h2>Algorithm Steps</h2>
+            <ol>
+                <li>Initialize the distance to the source vertex to 0 and all other vertices to infinity.</li>
+                <li>For each edge in the graph, update the distance to the destination vertex if the distance to the source vertex plus the edge weight is less than the current distance.</li>
+                <li>Repeat the above step for a total of |V| - 1 times, where |V| is the number of vertices in the graph.</li>
+                <li>Check for negative weight cycles by iterating through the edges one more time. If a distance can still be updated, a negative weight cycle exists.</li>
+            </ol>
+        </section>
+        <section>
+            <h2>Implementation</h2>
+            <pre><code>
+function bellmanFord(graph, source) {
+    const distances = {};
+    const { edges } = graph;
+
+    // Step 1: Initialize distances
+    for (const vertex of graph.vertices) {
+        distances[vertex] = Infinity;
+    }
+    distances[source] = 0;
+
+    // Step 2: Relax edges |V| - 1 times
+    for (let i = 1; i < graph.vertices.length; i++) {
+        for (const { from, to, weight } of edges) {
+            if (distances[from] + weight < distances[to]) {
+                distances[to] = distances[from] + weight;
+            }
+        }
+    }
+
+    // Step 3: Check for negative weight cycles
+    for (const { from, to, weight } of edges) {
+        if (distances[from] + weight < distances[to]) {
+            throw new Error('Graph contains a negative weight cycle');
+        }
+    }
+
+    return distances;
+}
+            </code></pre>
+        </section>
+        <section>
+            <h2>Complexity</h2>
+            <p>The time complexity of the Bellman-Ford algorithm is O(V * E), where V is the number of vertices and E is the number of edges. The space complexity is O(V).</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Algorithms Webpage</p>
+    </footer>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

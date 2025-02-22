@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radix Sort</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Radix Sort</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="linear-search.html">Linear Search</a></li>
+                <li><a href="binary-search.html">Binary Search</a></li>
+                <li><a href="selection-sort.html">Selection Sort</a></li>
+                <li><a href="insertion-sort.html">Insertion Sort</a></li>
+                <li><a href="merge-sort.html">Merge Sort</a></li>
+                <li><a href="quicksort.html">Quicksort</a></li>
+                <li><a href="counting-sort.html">Counting Sort</a></li>
+                <li><a href="radix-sort.html">Radix Sort</a></li>
+                <li><a href="dijkstras.html">Dijkstra's Algorithm</a></li>
+                <li><a href="bellman-ford.html">Bellman-Ford Algorithm</a></li>
+                <li><a href="floyd-warshall.html">Floyd-Warshall Algorithm</a></li>
+                <li><a href="huffman.html">Huffman Codes</a></li>
+                <li><a href="lzw.html">LZW Compression</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Overview</h2>
+            <p>Radix Sort is a non-comparative integer sorting algorithm that sorts numbers by processing individual digits. It works by grouping numbers by their individual digits, starting from the least significant digit to the most significant digit.</p>
+        </section>
+        <section>
+            <h2>How Radix Sort Works</h2>
+            <p>The algorithm processes each digit of the numbers in a specific base (usually base 10). It uses a stable sorting algorithm (like Counting Sort) as a subroutine to sort the numbers based on each digit.</p>
+            <ol>
+                <li>Find the maximum number to determine the number of digits.</li>
+                <li>For each digit (from least significant to most significant), perform a stable sort on the array.</li>
+                <li>Repeat until all digits are processed.</li>
+            </ol>
+        </section>
+        <section>
+            <h2>Implementation</h2>
+            <pre>
+function countingSortForRadix(arr, exp) {
+    let output = new Array(arr.length);
+    let count = new Array(10).fill(0);
+
+    for (let i = 0; i < arr.length; i++) {
+        count[Math.floor(arr[i] / exp) % 10]++;
+    }
+
+    for (let i = 1; i < 10; i++) {
+        count[i] += count[i - 1];
+    }
+
+    for (let i = arr.length - 1; i >= 0; i--) {
+        output[count[Math.floor(arr[i] / exp) % 10] - 1] = arr[i];
+        count[Math.floor(arr[i] / exp) % 10]--;
+    }
+
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = output[i];
+    }
+}
+
+function radixSort(arr) {
+    let max = Math.max(...arr);
+
+    for (let exp = 1; Math.floor(max / exp) > 0; exp *= 10) {
+        countingSortForRadix(arr, exp);
+    }
+}
+            </pre>
+        </section>
+        <section>
+            <h2>Complexity Analysis</h2>
+            <p>The time complexity of Radix Sort is O(d * (n + k)), where:</p>
+            <ul>
+                <li>d is the number of digits in the maximum number.</li>
+                <li>n is the number of elements in the array.</li>
+                <li>k is the range of the input.</li>
+            </ul>
+            <p>The space complexity is O(n + k).</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Algorithms Webpage</p>
+    </footer>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

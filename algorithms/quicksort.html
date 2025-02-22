@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quicksort Algorithm</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Quicksort Algorithm</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="linear-search.html">Linear Search</a></li>
+                <li><a href="binary-search.html">Binary Search</a></li>
+                <li><a href="selection-sort.html">Selection Sort</a></li>
+                <li><a href="insertion-sort.html">Insertion Sort</a></li>
+                <li><a href="merge-sort.html">Merge Sort</a></li>
+                <li><a href="quicksort.html">Quicksort</a></li>
+                <li><a href="counting-sort.html">Counting Sort</a></li>
+                <li><a href="radix-sort.html">Radix Sort</a></li>
+                <li><a href="dijkstras.html">Dijkstra’s Algorithm</a></li>
+                <li><a href="bellman-ford.html">Bellman-Ford Algorithm</a></li>
+                <li><a href="floyd-warshall.html">Floyd-Warshall Algorithm</a></li>
+                <li><a href="huffman.html">Huffman Codes</a></li>
+                <li><a href="lzw.html">LZW Compression</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Overview</h2>
+            <p>Quicksort is a highly efficient sorting algorithm and is based on partitioning an array into smaller sub-arrays. A sub-array is sorted recursively, and the base case is when the size of the sub-array is one or zero.</p>
+        </section>
+        <section>
+            <h2>How Quicksort Works</h2>
+            <p>The algorithm follows these steps:</p>
+            <ol>
+                <li>Choose a pivot element from the array.</li>
+                <li>Partition the array into two halves: elements less than the pivot and elements greater than the pivot.</li>
+                <li>Recursively apply the above steps to the sub-arrays.</li>
+            </ol>
+        </section>
+        <section>
+            <h2>Implementation</h2>
+            <pre><code>
+function quicksort(arr) {
+    if (arr.length <= 1) {
+        return arr;
+    }
+    const pivot = arr[arr.length - 1];
+    const left = [];
+    const right = [];
+    for (let i = 0; i < arr.length - 1; i++) {
+        if (arr[i] < pivot) {
+            left.push(arr[i]);
+        } else {
+            right.push(arr[i]);
+        }
+    }
+    return [...quicksort(left), pivot, ...quicksort(right)];
+}
+            </code></pre>
+        </section>
+        <section>
+            <h2>Time Complexity</h2>
+            <p>The average-case time complexity of Quicksort is O(n log n), while the worst-case time complexity is O(n²), which occurs when the smallest or largest element is always chosen as the pivot.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Algorithms Webpage</p>
+    </footer>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

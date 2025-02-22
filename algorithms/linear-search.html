@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Search Algorithm</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Linear Search Algorithm</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="binary-search.html">Binary Search</a></li>
+                <li><a href="selection-sort.html">Selection Sort</a></li>
+                <li><a href="insertion-sort.html">Insertion Sort</a></li>
+                <li><a href="merge-sort.html">Merge Sort</a></li>
+                <li><a href="quicksort.html">Quicksort</a></li>
+                <li><a href="counting-sort.html">Counting Sort</a></li>
+                <li><a href="radix-sort.html">Radix Sort</a></li>
+                <li><a href="dijkstras.html">Dijkstra’s Algorithm</a></li>
+                <li><a href="bellman-ford.html">Bellman-Ford Algorithm</a></li>
+                <li><a href="floyd-warshall.html">Floyd-Warshall Algorithm</a></li>
+                <li><a href="huffman.html">Huffman Codes</a></li>
+                <li><a href="lzw.html">LZW Compression</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>What is Linear Search?</h2>
+            <p>Linear search is a simple search algorithm that checks every element in a list until the desired element is found or the list ends.</p>
+        </section>
+        <section>
+            <h2>How Linear Search Works</h2>
+            <p>The algorithm starts at the beginning of the list and compares each element with the target value. If a match is found, the index of the element is returned. If the end of the list is reached without finding the target, a value indicating failure (often -1) is returned.</p>
+        </section>
+        <section>
+            <h2>Implementation</h2>
+            <pre><code>
+function linearSearch(arr, target) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === target) {
+            return i; // Target found
+        }
+    }
+    return -1; // Target not found
+}
+            </code></pre>
+        </section>
+        <section>
+            <h2>Complexity Analysis</h2>
+            <p>The time complexity of linear search is O(n), where n is the number of elements in the list. The space complexity is O(1) since no additional storage is required.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Algorithms Webpage</p>
+    </footer>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

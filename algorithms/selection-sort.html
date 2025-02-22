@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selection Sort</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Selection Sort Algorithm</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="linear-search.html">Linear Search</a></li>
+                <li><a href="binary-search.html">Binary Search</a></li>
+                <li><a href="selection-sort.html">Selection Sort</a></li>
+                <li><a href="insertion-sort.html">Insertion Sort</a></li>
+                <li><a href="merge-sort.html">Merge Sort</a></li>
+                <li><a href="quicksort.html">Quicksort</a></li>
+                <li><a href="counting-sort.html">Counting Sort</a></li>
+                <li><a href="radix-sort.html">Radix Sort</a></li>
+                <li><a href="dijkstras.html">Dijkstra’s Algorithm</a></li>
+                <li><a href="bellman-ford.html">Bellman-Ford Algorithm</a></li>
+                <li><a href="floyd-warshall.html">Floyd-Warshall Algorithm</a></li>
+                <li><a href="huffman.html">Huffman Codes</a></li>
+                <li><a href="lzw.html">LZW Compression</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>What is Selection Sort?</h2>
+            <p>Selection Sort is a simple comparison-based sorting algorithm. It works by dividing the input list into two parts: a sorted part and an unsorted part. The algorithm repeatedly selects the smallest (or largest, depending on the order) element from the unsorted part and moves it to the end of the sorted part.</p>
+        </section>
+        <section>
+            <h2>How Selection Sort Works</h2>
+            <ol>
+                <li>Start with the first element as the minimum.</li>
+                <li>Compare this minimum with the next element. If the next element is smaller, update the minimum.</li>
+                <li>Continue this process until the end of the array.</li>
+                <li>Swap the minimum element with the first element of the unsorted part.</li>
+                <li>Move the boundary of the sorted and unsorted parts one element to the right.</li>
+                <li>Repeat the process until the entire array is sorted.</li>
+            </ol>
+        </section>
+        <section>
+            <h2>Implementation</h2>
+            <pre><code>
+function selectionSort(arr) {
+    let n = arr.length;
+    for (let i = 0; i < n - 1; i++) {
+        let minIndex = i;
+        for (let j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        if (minIndex !== i) {
+            [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+        }
+    }
+    return arr;
+}
+            </code></pre>
+        </section>
+        <section>
+            <h2>Performance</h2>
+            <p>The time complexity of Selection Sort is O(n²) in all cases (best, average, and worst) because of the nested loops. It is not a stable sort and is not suitable for large datasets.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Algorithms Webpage</p>
+    </footer>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

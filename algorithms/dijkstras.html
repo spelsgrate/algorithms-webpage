@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dijkstra's Algorithm</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Dijkstra's Algorithm</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="linear-search.html">Linear Search</a></li>
+                <li><a href="binary-search.html">Binary Search</a></li>
+                <li><a href="selection-sort.html">Selection Sort</a></li>
+                <li><a href="insertion-sort.html">Insertion Sort</a></li>
+                <li><a href="merge-sort.html">Merge Sort</a></li>
+                <li><a href="quicksort.html">Quicksort</a></li>
+                <li><a href="counting-sort.html">Counting Sort</a></li>
+                <li><a href="radix-sort.html">Radix Sort</a></li>
+                <li><a href="dijkstras.html">Dijkstra's Algorithm</a></li>
+                <li><a href="bellman-ford.html">Bellman-Ford Algorithm</a></li>
+                <li><a href="floyd-warshall.html">Floyd-Warshall Algorithm</a></li>
+                <li><a href="huffman.html">Huffman Codes</a></li>
+                <li><a href="lzw.html">LZW Compression</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Overview</h2>
+            <p>Dijkstra's Algorithm is a popular algorithm used for finding the shortest paths between nodes in a graph. It is widely used in routing and as a subroutine in other graph algorithms.</p>
+        </section>
+        <section>
+            <h2>How It Works</h2>
+            <p>The algorithm maintains a set of nodes whose shortest distance from the source is known and repeatedly selects the node with the smallest known distance, updating the distances of its neighboring nodes.</p>
+        </section>
+        <section>
+            <h2>Implementation</h2>
+            <pre><code>
+function dijkstra(graph, start) {
+    let distances = {};
+    let visited = new Set();
+    let priorityQueue = new PriorityQueue();
+
+    for (let vertex in graph) {
+        distances[vertex] = Infinity;
+    }
+    distances[start] = 0;
+    priorityQueue.enqueue(start, 0);
+
+    while (!priorityQueue.isEmpty()) {
+        let currentVertex = priorityQueue.dequeue().element;
+
+        if (!visited.has(currentVertex)) {
+            visited.add(currentVertex);
+
+            for (let neighbor in graph[currentVertex]) {
+                let distance = graph[currentVertex][neighbor];
+                let newDistance = distances[currentVertex] + distance;
+
+                if (newDistance < distances[neighbor]) {
+                    distances[neighbor] = newDistance;
+                    priorityQueue.enqueue(neighbor, newDistance);
+                }
+            }
+        }
+    }
+    return distances;
+}
+            </code></pre>
+        </section>
+        <section>
+            <h2>Example</h2>
+            <p>Consider a graph with the following edges:</p>
+            <ul>
+                <li>A - B (1)</li>
+                <li>A - C (4)</li>
+                <li>B - C (2)</li>
+                <li>B - D (5)</li>
+                <li>C - D (1)</li>
+            </ul>
+            <p>Using Dijkstra's Algorithm, the shortest path from A to D is A -> B -> C -> D with a total distance of 4.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Algorithms Webpage</p>
+    </footer>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

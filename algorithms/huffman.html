@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huffman Coding</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Huffman Coding</h1>
+        <nav>
+            <ul>
+                <li><a href="linear-search.html">Linear Search</a></li>
+                <li><a href="binary-search.html">Binary Search</a></li>
+                <li><a href="selection-sort.html">Selection Sort</a></li>
+                <li><a href="insertion-sort.html">Insertion Sort</a></li>
+                <li><a href="merge-sort.html">Merge Sort</a></li>
+                <li><a href="quicksort.html">Quicksort</a></li>
+                <li><a href="counting-sort.html">Counting Sort</a></li>
+                <li><a href="radix-sort.html">Radix Sort</a></li>
+                <li><a href="dijkstras.html">Dijkstra’s Algorithm</a></li>
+                <li><a href="bellman-ford.html">Bellman-Ford Algorithm</a></li>
+                <li><a href="floyd-warshall.html">Floyd-Warshall Algorithm</a></li>
+                <li><a href="huffman.html">Huffman Coding</a></li>
+                <li><a href="lzw.html">LZW Compression</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>What is Huffman Coding?</h2>
+            <p>Huffman Coding is a popular algorithm used for data compression. It is based on the frequency of occurrence of data items. The algorithm assigns variable-length codes to input characters, with shorter codes assigned to more frequent characters.</p>
+        </section>
+        <section>
+            <h2>How Huffman Coding Works</h2>
+            <p>The process of Huffman Coding involves the following steps:</p>
+            <ol>
+                <li>Count the frequency of each character in the input data.</li>
+                <li>Create a priority queue (or min-heap) to store the characters and their frequencies.</li>
+                <li>Build a binary tree by repeatedly merging the two least frequent nodes until only one node remains.</li>
+                <li>Assign codes to characters by traversing the tree, with left edges representing '0' and right edges representing '1'.</li>
+            </ol>
+        </section>
+        <section>
+            <h2>Example Implementation</h2>
+            <pre>
+<code>
+class Node:
+    def __init__(self, char, freq):
+        self.char = char
+        self.freq = freq
+        self.left = None
+        self.right = None
+
+def huffman_coding(char_freq):
+    # Implementation of Huffman coding algorithm
+    pass
+</code>
+            </pre>
+        </section>
+        <section>
+            <h2>Applications of Huffman Coding</h2>
+            <p>Huffman Coding is widely used in various applications, including:</p>
+            <ul>
+                <li>File compression formats like ZIP and GZIP.</li>
+                <li>Image formats like JPEG.</li>
+                <li>Video compression standards like MPEG.</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Algorithms Webpage</p>
+    </footer>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
