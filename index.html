@@ -5,37 +5,145 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Algorithms Overview</title>
     <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- React and ReactDOM from CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Babel (for inline JSX transformation; remove in production builds) -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Algorithms Overview</h1>
-        <nav>
-            <ul>
-                <li><a href="algorithms/linear-search.html">Linear Search</a></li>
-                <li><a href="algorithms/binary-search.html">Binary Search</a></li>
-                <li><a href="algorithms/selection-sort.html">Selection Sort</a></li>
-                <li><a href="algorithms/insertion-sort.html">Insertion Sort</a></li>
-                <li><a href="algorithms/merge-sort.html">Merge Sort</a></li>
-                <li><a href="algorithms/quicksort.html">Quicksort</a></li>
-                <li><a href="algorithms/counting-sort.html">Counting Sort</a></li>
-                <li><a href="algorithms/radix-sort.html">Radix Sort</a></li>
-                <li><a href="algorithms/dijkstras.html">Dijkstra’s Algorithm</a></li>
-                <li><a href="algorithms/bellman-ford.html">Bellman-Ford Algorithm</a></li>
-                <li><a href="algorithms/floyd-warshall.html">Floyd-Warshall Algorithm</a></li>
-                <li><a href="algorithms/huffman.html">Huffman Codes</a></li>
-                <li><a href="algorithms/lzw.html">LZW Compression</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section>
-            <h2>Welcome to the Algorithms Webpage</h2>
-            <p>This webpage provides an overview of various algorithms, including searching, sorting, and graph algorithms. Click on the links above to learn more about each algorithm.</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 Algorithms Webpage</p>
-    </footer>
-    <script src="assets/js/main.js"></script>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState } = React;
+
+        // New NavBar component that notifies the App when an algorithm is selected.
+        function NavBar({ onSelectAlgorithm }) {
+            const algorithms = [
+                { id: 'linear-search', name: 'Linear Search' },
+                { id: 'binary-search', name: 'Binary Search' },
+                { id: 'selection-sort', name: 'Selection Sort' },
+                { id: 'insertion-sort', name: 'Insertion Sort' },
+                { id: 'merge-sort', name: 'Merge Sort' },
+                { id: 'quicksort', name: 'Quicksort' },
+                { id: 'counting-sort', name: 'Counting Sort' },
+                { id: 'radix-sort', name: 'Radix Sort' },
+                { id: 'dijkstras', name: 'Dijkstra’s' },
+                { id: 'bellman-ford', name: 'Bellman-Ford' },
+                { id: 'floyd-warshall', name: 'Floyd-Warshall' },
+                { id: 'huffman', name: 'Huffman' },
+                { id: 'lzw', name: 'LZW' },
+            ];
+            return (
+                <nav className="navbar">
+                    <ul className="nav-list">
+                        {algorithms.map(algo => (
+                            <li key={algo.id}>
+                                <a
+                                    href="#"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        onSelectAlgorithm(algo.id);
+                                    }}
+                                >
+                                    {algo.name}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            );
+        }
+
+        // Enhanced Header now includes a hero section and the NavBar.
+        function Header({ onSelectAlgorithm }) {
+            return (
+                <header className="header">
+                    <div className="hero">
+                        <h1>Algorithms Overview</h1>
+                        <p className="tagline">Explore and learn about essential algorithms in computer science.</p>
+                    </div>
+                    <NavBar onSelectAlgorithm={onSelectAlgorithm} />
+                </header>
+            );
+        }
+
+        // Updated MainContent with a prominent call-to-action area.
+        function MainContent() {
+            return (
+                <main className="main-content">
+                    <section className="intro">
+                        <h2>Welcome to the Algorithms Webpage</h2>
+                        <p>
+                            This webpage provides an overview of various algorithms, including searching, sorting, and graph algorithms.
+                            Select an algorithm from the navigation above for detailed explanations and visualizations.
+                        </p>
+                    </section>
+                    <section className="features">
+                        <h3>Featured Algorithms</h3>
+                        <div className="feature-grid">
+                            <div className="feature-card">
+                                <h4>Search Algorithms</h4>
+                                <p>Learn about linear and binary search techniques.</p>
+                            </div>
+                            <div className="feature-card">
+                                <h4>Sorting Algorithms</h4>
+                                <p>Explore different sorting methods like merge sort and quicksort.</p>
+                            </div>
+                            <div className="feature-card">
+                                <h4>Graph Algorithms</h4>
+                                <p>Dive into graph traversal and shortest path algorithms.</p>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            );
+        }
+
+        // Visualization component for a selected algorithm.
+        function AlgorithmVisualization({ algorithm, onBack }) {
+            return (
+                <div className="visualization">
+                    <button className="back-button" onClick={onBack}>← Back</button>
+                    <h2>{algorithm.replace(/-/g, ' ').toUpperCase()} Visualization</h2>
+                    <p>This is a placeholder for the {algorithm.replace(/-/g, ' ')} visualization.</p>
+                    {/* Replace the above with interactive visualization code as needed. */}
+                </div>
+            );
+        }
+
+        // Footer remains simple and centered.
+        function Footer() {
+            return (
+                <footer className="footer">
+                    <p>&copy; 2023 Algorithms Webpage. All rights reserved.</p>
+                </footer>
+            );
+        }
+
+        // App component to combine the pieces together.
+        function App() {
+            const [selectedAlgorithm, setSelectedAlgorithm] = useState(null);
+
+            return (
+                <div className="app-container">
+                    <Header onSelectAlgorithm={setSelectedAlgorithm} />
+                    {selectedAlgorithm ? (
+                        <AlgorithmVisualization
+                            algorithm={selectedAlgorithm}
+                            onBack={() => setSelectedAlgorithm(null)}
+                        />
+                    ) : (
+                        <MainContent />
+                    )}
+                    <Footer />
+                </div>
+            );
+        }
+
+        // Render the application.
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
 </body>
 </html>
